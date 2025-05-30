@@ -36,7 +36,8 @@ const Templates = ({ onSelectTemplate }) => {
         }
     };
 
-    const useTemplate = async (template) => {
+    // RENAMED: useTemplate -> selectTemplate (fixes the React Hook error)
+    const selectTemplate = async (template) => {
         try {
             await axios.post(`/api/templates/${template._id}/use`);
             onSelectTemplate(template);
@@ -91,7 +92,7 @@ const Templates = ({ onSelectTemplate }) => {
                         <p>{template.subject}</p>
                         <small>Used {template.usageCount} times</small>
                         <button 
-                            onClick={() => useTemplate(template)}
+                            onClick={() => selectTemplate(template)}
                             className="use-template-btn"
                         >
                             Use Template
